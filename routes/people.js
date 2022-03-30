@@ -3,7 +3,6 @@ const router = express.Router();
 const PeopleControllers = require("../controllers/people.controller")
 
 
-
 router.get("/", (req, res) => {
     try {
         const people = PeopleControllers.getPeople()
