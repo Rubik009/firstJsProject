@@ -19,8 +19,27 @@ router.get("/peopleById/:id", async (req, res) => {
         console.log(err)
     }
 });
-router.post("/create");
-router.put("/edit");
-router.delete("/delete");
+router.post("/create", async (req, res) => {
+    try {
+        console.log(req.body);
+    } catch (err) {
+        console.log(err)
+    }
+});
+router.put("/edit/:id", async (req, res) => {
+    try {
+        console.log(req.params.id);
+        console.log(req.body);
+    } catch (err) {
+        console.log(err)
+    }
+});
+router.delete("/delete/:id", async (req, res) => {
+    try {
+        console.log(req.params.id);
+    } catch (err) {
+        console.log(err)
+    }
+});
 
 module.exports = router;
