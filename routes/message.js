@@ -3,17 +3,17 @@ const MessageControllers = require("../controllers/message.controller");
 const router = express.Router();
 
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
     try {
-        const messages = MessageControllers.getMessages();
+        const messages = await MessageControllers.getMessages();
         res.send(messages)
     } catch (err) {
         console.log(err)
     }
 });
-router.get("/messageById/:id", (req, res) => {
+router.get("/messageById/:id", async (req, res) => {
     try {
-        const messageById = MessageControllers.getMessageById(req.params.id)
+        const messageById = await MessageControllers.getMessageById(req.params.id)
         res.send(messageById)
     } catch (err) {
         console.log(err)
