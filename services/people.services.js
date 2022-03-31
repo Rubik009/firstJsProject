@@ -22,7 +22,7 @@ class PeopleServices {
     getPeopleById(id) {
         return new Promise((res, rej) => {
             fs.readFile("people.json", "utf8", (err, data) => {
-                if(err) throw err;
+                if (err) throw err;
                 let arrPeople = JSON.parse(data);
                 let person = arrPeople.find(item => item.id == id);
                 res(person);
@@ -38,27 +38,42 @@ class PeopleServices {
                 arrPeople.push(body);
 
                 fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
-                    if(err) throw err;
+                    if (err) throw err;
                 })
                 res('Person added')
             })
         })
     }
     editPerson(id, body) {
-        return new Promise ((res, rej) => {
+        return new Promise((res, rej) => {
             fs.readFile("people.json", "utf8", (err, data) => {
                 if (err) throw err;
-                let arrPeople  = JSON.parse(data);
+                let arrPeople = JSON.parse(data);
                 arrPeople.find((item, index) => {
-                    if(id == item.id){
+                    if (id == item.id) {
                         arrPeople[index] = body;
                     }
                 });
 
                 fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
-                    if(err) throw err;
+                    if (err) throw err;
                 })
                 res('Person edited')
+            })
+        })
+    }
+    deletePerson(id) {
+        return new Promise((res, rej) => {
+            fs.readFile("people.json", "utf8", (err, data) => {
+                if (err) throw err;
+                let arrPeople = JSON.parse(data);
+                let index = arrPeople.findIndex(item => item.id == id);
+                arrPeople.splice(index, 1)
+
+                fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
+                    if (err) throw err;
+                })
+                res('Person deleted');
             })
         })
     }

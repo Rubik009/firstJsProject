@@ -17,6 +17,10 @@ class PeopleControllers {
         let answer = await PeopleServices.editPerson(id, body);
         return answer;
     }
+    async deletePerson(id){
+        let answer = await PeopleServices.deletePerson(id);
+        return answer;
+    }
 }
 
 module.exports = new PeopleControllers();
