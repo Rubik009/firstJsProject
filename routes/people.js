@@ -19,9 +19,10 @@ router.get("/peopleById/:id", async (req, res) => {
         console.log(err)
     }
 });
-router.post("/create", async (req, res) => {
+router.post("/addPerson", async (req, res) => {
     try {
-        console.log(req.body);
+        const answer = await PeopleControllers.addPerson(req.body)
+        res.send(answer)
     } catch (err) {
         console.log(err)
     }

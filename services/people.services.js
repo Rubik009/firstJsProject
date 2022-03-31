@@ -19,9 +19,29 @@ class PeopleServices {
             })
         })
     }
-    getPeopleById(id){
+    getPeopleById(id) {
         return new Promise((res, rej) => {
-            res(people.find(item => item.id == id))
+            fs.readFile("people.json", "utf8", (err, data) => {
+                if(err) throw err;
+                let arrPeople = JSON.parse(data);
+                let person = arrPeople.find(item => item.id == id);
+                res(person);
+            })
+        })
+    }
+    addPerson(body) {
+        return new Promise((res, rej) => {
+            fs.readFile("people.json", "utf8", (err, data) => {
+                if (err) throw err;
+                let fileData = JSON.parse(data);
+                let arrPeople = fileData.people;
+                arrPeople.push(body);
+
+                fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
+                    if(err) throw err;
+                })
+                res('Person added')
+            })
         })
     }
 }

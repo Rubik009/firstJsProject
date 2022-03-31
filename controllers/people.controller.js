@@ -6,8 +6,12 @@ class PeopleControllers {
         return people;
     }
     async getPeopleById(id) {
-        let peopleById = await PeopleServices.getPeopleById(id)
+        let peopleById = await PeopleServices.getPeopleById(id);
         return peopleById;
+    }
+    async addPerson (body){
+        let answer = await PeopleServices.addPerson(body);
+        return answer;
     }
 }
 
