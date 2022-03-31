@@ -44,6 +44,24 @@ class PeopleServices {
             })
         })
     }
+    editPerson(id, body) {
+        return new Promise ((res, rej) => {
+            fs.readFile("people.json", "utf8", (err, data) => {
+                if (err) throw err;
+                let arrPeople  = JSON.parse(data);
+                arrPeople.find((item, index) => {
+                    if(id == item.id){
+                        arrPeople[index] = body;
+                    }
+                });
+
+                fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
+                    if(err) throw err;
+                })
+                res('Person edited')
+            })
+        })
+    }
 }
 
 module.exports = new PeopleServices();

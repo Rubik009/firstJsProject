@@ -13,6 +13,10 @@ class PeopleControllers {
         let answer = await PeopleServices.addPerson(body);
         return answer;
     }
+    async editPerson(id, body) {
+        let answer = await PeopleServices.editPerson(id, body);
+        return answer;
+    }
 }
 
 module.exports = new PeopleControllers();

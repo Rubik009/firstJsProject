@@ -29,8 +29,8 @@ router.post("/addPerson", async (req, res) => {
 });
 router.put("/edit/:id", async (req, res) => {
     try {
-        console.log(req.params.id);
-        console.log(req.body);
+        const answer = await PeopleControllers.editPerson(req.params.id, req.body)
+        res.send(answer)
     } catch (err) {
         console.log(err)
     }
