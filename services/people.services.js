@@ -33,8 +33,7 @@ class PeopleServices {
         return new Promise((res, rej) => {
             fs.readFile("people.json", "utf8", (err, data) => {
                 if (err) throw err;
-                let fileData = JSON.parse(data);
-                let arrPeople = fileData.people;
+                let arrPeople = JSON.parse(data);
                 arrPeople.push(body);
 
                 fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
