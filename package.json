@@ -4,8 +4,7 @@
   "description": "my first project",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "swagger-autogen": "node swagger.js"
+    "dev": "nodemon index.js"
   },
   "author": "Roman Rubinshteyn",
   "license": "ISC",
