@@ -21,7 +21,59 @@ class MessageServices {
     }
     getMessagesById(id) {
         return new Promise((res, rej) => {
-            res(messages.find(item => item.messageId == id))
+            fs.readFile("message.json", "utf8", (err, data) => {
+                if (err) throw err;
+                let arrMessage = JSON.parse(data);
+                let message = arrMessage.find(item => item.id == id);
+                res(message);
+            })
+        })
+    }
+    addMessage(body) {
+        return new Promise((res, rej) => {
+            fs.readFile("message.json", "utf8", (err, data) => {
+                if (err) throw err;
+                let arrMessage = JSON.parse(data);
+                arrMessage.push(body);
+
+                fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
+                    if (err) throw err;
+                })
+                res('Message added')
+            })
+        })
+    }
+    editMessage(id, body) {
+        return new Promise((res, rej) => {
+            fs.readFile("message.json", "utf8", (err, data) => {
+                if (err) throw err;
+                let arrMessage = JSON.parse(data);
+                arrMessage.find((item, index) => {
+                    if (id == item.id) {
+                        arrMessage[index] = body;
+                    }
+                });
+
+                fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
+                    if (err) throw err;
+                })
+                res('Message edited')
+            })
+        })
+    }
+    deleteMessage(id) {
+        return new Promise((res, rej) => {
+            fs.readFile("message.json", "utf8", (err, data) => {
+                if (err) throw err;
+                let arrMessage = JSON.parse(data);
+                let index = arrMessage.findIndex(item => item.id == id);
+                arrMessage.splice(index, 1)
+
+                fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
+                    if (err) throw err;
+                })
+                res('Message deleted');
+            })
         })
     }
 }

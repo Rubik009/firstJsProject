@@ -1,1 +1,17 @@
-[{"id":"1","name":"Roman","age":"25"},{"id":"2","name":"Alesya","age":"23"},{"id":"3","name":"Pavel","age":"24"}]
+[
+    {
+        "id": "1",
+        "name": "Roman",
+        "age": "25"
+    },
+    {
+        "id": "2",
+        "name": "Alesya",
+        "age": "23"
+    },
+    {
+        "id": "3",
+        "name": "Pavel",
+        "age": "24"
+    }
+]
