@@ -15,7 +15,11 @@ class MessageServices {
         return new Promise((res, rej) => {
             fs.readFile("message.json", "utf8", (err, data) => {
                 if (err) throw err;
-                res(JSON.parse(data))
+                if(data.length == 0){
+                    res('no Messages');
+                }else{
+                    res(JSON.parse(data))
+                }
             })
         })
     }
@@ -23,9 +27,13 @@ class MessageServices {
         return new Promise((res, rej) => {
             fs.readFile("message.json", "utf8", (err, data) => {
                 if (err) throw err;
-                let arrMessage = JSON.parse(data);
-                let message = arrMessage.find(item => item.id == id);
-                res(message);
+                if(data.length == 0){
+                    res('no Messages')
+                }else{
+                    let arrMessage = JSON.parse(data);
+                    let message = arrMessage.find(item => item.id == id);
+                    res(message);
+                }
             })
         })
     }
@@ -33,13 +41,22 @@ class MessageServices {
         return new Promise((res, rej) => {
             fs.readFile("message.json", "utf8", (err, data) => {
                 if (err) throw err;
-                let arrMessage = JSON.parse(data);
-                arrMessage.push(body);
-
-                fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
-                    if (err) throw err;
-                })
-                res('Message added')
+                if(data.length == 0){ 
+                    let arrMessage = [];
+                    arrMessage.push(body)
+                    fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
+                        if (err) throw err;
+                    })
+                    res('Message added')
+                }else{
+                    let arrMessage = JSON.parse(data);
+                    arrMessage.push(body);
+    
+                    fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
+                        if (err) throw err;
+                    })
+                    res('Message added')
+                } 
             })
         })
     }
@@ -47,17 +64,20 @@ class MessageServices {
         return new Promise((res, rej) => {
             fs.readFile("message.json", "utf8", (err, data) => {
                 if (err) throw err;
-                let arrMessage = JSON.parse(data);
+                if(data.length === 0){
+                    res('no Messages')
+                }else{
+                    let arrMessage = JSON.parse(data);
                 arrMessage.find((item, index) => {
                     if (id == item.id) {
                         arrMessage[index] = body;
                     }
                 });
-
                 fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
                     if (err) throw err;
                 })
                 res('Message edited')
+                }
             })
         })
     }
@@ -65,14 +85,18 @@ class MessageServices {
         return new Promise((res, rej) => {
             fs.readFile("message.json", "utf8", (err, data) => {
                 if (err) throw err;
-                let arrMessage = JSON.parse(data);
-                let index = arrMessage.findIndex(item => item.id == id);
-                arrMessage.splice(index, 1)
-
-                fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
-                    if (err) throw err;
-                })
-                res('Message deleted');
+                if(data.length === 0){
+                    res('no messages to delete')
+                }else {
+                    let arrMessage = JSON.parse(data);
+                    let index = arrMessage.findIndex(item => item.id == id);
+                    arrMessage.splice(index, 1)
+    
+                    fs.writeFile("message.json", JSON.stringify(arrMessage), (err) => {
+                        if (err) throw err;
+                    })
+                    res('Message deleted');
+                }
             })
         })
     }
