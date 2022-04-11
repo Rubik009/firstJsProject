@@ -16,7 +16,7 @@ const PeopleControllers = require("../controllers/people.controller")
 router.get("/", async (req, res) => {
     try {
         const people = await PeopleControllers.getPeople()
-        res.send(people)
+        res.status(200).json(people);
     } catch (err) {
         console.log(err)
     }
