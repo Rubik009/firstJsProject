@@ -39,7 +39,7 @@ class PeopleServices {
                 fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
                     if (err) throw err;
                 })
-                res('Person added')
+                res({message : 'Person added'})
             })
         })
     }
@@ -57,7 +57,7 @@ class PeopleServices {
                 fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
                     if (err) throw err;
                 })
-                res('Person edited')
+                res({message : 'Person edited'})
             })
         })
     }
@@ -72,7 +72,7 @@ class PeopleServices {
                 fs.writeFile("people.json", JSON.stringify(arrPeople), (err) => {
                     if (err) throw err;
                 })
-                res('Person deleted');
+                res({message : 'Person deleted'});
             })
         })
     }

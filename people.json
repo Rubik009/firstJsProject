@@ -13,5 +13,15 @@
         "id": "3",
         "name": "Pavel",
         "age": "24"
+    },
+    {
+        "id": "4",
+        "name": "Anton",
+        "age": "45"
+    },
+    {
+        "id": "5",
+        "name": "Vasya",
+        "age": "33"
     }
 ]
